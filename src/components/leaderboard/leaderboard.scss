@@ -1,0 +1,56 @@
+@use '../../styles/mixins' as *;
+
+.leaderboard {
+  padding-block: 48px;
+}
+
+.leaderboard__container {
+  @include container;
+}
+
+.leaderboard h2 {
+  margin: 0 0 24px;
+  font-size: 32px;
+}
+
+.leaderboard__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.leaderboard th,
+.leaderboard td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.leaderboard th {
+  font-weight: 700;
+}
+
+.leaderboard td:first-child,
+.leaderboard th:first-child {
+  width: 80px;
+}
+
+.leaderboard td:last-child,
+.leaderboard th:last-child {
+  text-align: right;
+}
+
+@media (max-width: 767px) {
+  .leaderboard {
+    padding-block: 32px;
+  }
+
+  .leaderboard h2 {
+    font-size: 28px;
+  }
+
+  .leaderboard th,
+  .leaderboard td {
+    padding: 12px 8px;
+  }
+}
