@@ -1,0 +1,18 @@
+@use './tokens' as *;
+
+@mixin container {
+  width: min(100% - 32px, 1200px);
+  margin-inline: auto;
+}
+
+@mixin tablet {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
