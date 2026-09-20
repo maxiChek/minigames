@@ -1,7 +1,20 @@
-$color-bg: #ffffff;
-$color-text: #1a1a1a;
-$color-primary: #4a90e2;
+$color-bg: #f7f1e8;
+$color-surface: #fffaf2;
+$color-text: #211b2d;
+$color-muted: #655b6d;
+$color-primary: #ffd34d;
+$color-primary-dark: #e3b82e;
+$color-purple: #6c4aa0;
+$color-purple-dark: #211936;
+$color-border: #211b2d;
+$color-white: #ffffff;
 
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
+$shadow-hard: 6px 6px 0 $color-border;
+
+$container-max: 1200px;
 $breakpoint-mobile: 375px;
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1920px;

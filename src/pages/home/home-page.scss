@@ -1,17 +1,521 @@
+@use '../../styles/tokens' as *;
 @use '../../styles/mixins' as *;
 
-.home {
+.section-container {
+  @include container;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  border: 2px solid $color-border;
+  border-radius: $radius-sm;
+  font-weight: 900;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.button--primary {
+  background: $color-primary;
+  box-shadow: 4px 4px 0 $color-border;
+}
+
+.button--primary:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 $color-border;
+}
+
+.hero {
+  position: relative;
+  min-height: 540px;
+  overflow: hidden;
+  background: $color-purple-dark;
+}
+
+.hero__backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgb(33 25 54 / 88%) 0%,
+      rgb(33 25 54 / 38%) 58%,
+      rgb(33 25 54 / 55%) 100%
+    ),
+    url('https://raw.githubusercontent.com/rolling-scopes-school/qualifying-stage/main/tasks/minigames/tasks/assets/images/games/winter-burrow-card.jpg')
+      center / cover;
+  filter: saturate(0.8);
+}
+
+.hero__container {
   @include container;
 
-  padding-block: 64px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  min-height: 540px;
 }
 
-.home h1 {
-  margin: 0 0 16px;
-  font-size: 48px;
+.hero__card {
+  width: min(100%, 520px);
+  padding: clamp(28px, 4vw, 52px);
+  background: $color-surface;
+  border: 3px solid $color-border;
+  border-radius: $radius-lg;
+  box-shadow: 8px 8px 0 $color-border;
 }
 
-.home p {
-  margin: 0;
+.hero__eyebrow {
+  margin: 0 0 10px;
+  color: $color-purple;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.hero h1 {
+  margin: 0 0 18px;
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.hero__card > p:not(.hero__eyebrow) {
+  margin: 0 0 28px;
+  color: $color-muted;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.games,
+.leaderboard,
+.developer {
+  padding-block: 76px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.section-title {
+  @include section-title;
+}
+
+.section-arrows {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.section-arrows button {
+  width: 44px;
+  height: 44px;
+  border: 2px solid $color-border;
+  border-radius: 50%;
+  background: $color-surface;
   font-size: 20px;
+  font-weight: 900;
+}
+
+.games__track {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  overflow: hidden;
+}
+
+.game-card {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 1.2;
+  overflow: hidden;
+  border: 2px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-purple-dark;
+}
+
+.game-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover img {
+  transform: scale(1.04);
+}
+
+.game-card__info {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 10px;
+  padding: 14px;
+  background: linear-gradient(transparent, rgb(33 25 54 / 92%));
+  color: $color-white;
+}
+
+.game-card__info h3 {
+  min-width: 0;
+  margin: 12px 0 0;
+  overflow: hidden;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.game-card__info span {
+  font-size: 13px;
+}
+
+.game-card__info span:last-child {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.leaderboard {
+  background: $color-surface;
+}
+
+.leaderboard__table-wrap {
+  overflow: hidden;
+  border: 3px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: 5px 5px 0 $color-border;
+}
+
+.leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard th,
+.leaderboard td {
+  padding: 17px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgb(33 27 45 / 18%);
+}
+
+.leaderboard th {
+  color: $color-white;
+  background: $color-purple;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.leaderboard tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.leaderboard tbody tr:nth-child(even) {
+  background: rgb(255 211 77 / 13%);
+}
+
+.developer {
+  background: $color-bg;
+}
+
+.developer__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 56px;
+}
+
+.developer__art {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  border-radius: $radius-lg;
+  background:
+    radial-gradient(circle at 35% 30%, #ffd34d 0 10%, transparent 11%),
+    radial-gradient(circle at 75% 70%, #8d6abd 0 14%, transparent 15%),
+    $color-purple;
+}
+
+.developer__orb {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  right: 12%;
+  bottom: 8%;
+  border-radius: 50%;
+  background: $color-primary;
+  border: 3px solid $color-border;
+}
+
+.developer__controller {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 120px;
+  transform: translate(-50%, -50%) rotate(-8deg);
+}
+
+.developer__card {
+  padding: clamp(28px, 4vw, 52px);
+  background: $color-surface;
+  border: 3px solid $color-border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-hard;
+}
+
+.developer__card h2 {
+  margin: 0 0 18px;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1;
+}
+
+.developer__card > p:not(.hero__eyebrow):not(.developer__contact) {
+  margin: 0 0 28px;
+  color: $color-muted;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.developer__contact {
+  margin: 22px 0 0;
+  color: $color-muted;
+  font-size: 14px;
+}
+
+.developer__contact a {
+  color: $color-purple;
+  font-weight: 800;
+}
+
+.footer {
+  padding: 58px 0 24px;
+  background: $color-purple-dark;
+  color: $color-surface;
+}
+
+.footer__container {
+  @include container;
+
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 60px;
+  padding-bottom: 48px;
+}
+
+.footer__logo {
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.footer__brand p {
+  max-width: 260px;
+  color: rgb(255 250 242 / 68%);
+  line-height: 1.5;
+}
+
+.footer__links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.footer__links div {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.footer__links h3 {
+  margin: 0 0 8px;
+  color: $color-primary;
+  font-size: 14px;
+}
+
+.footer__links a {
+  color: rgb(255 250 242 / 82%);
+  font-size: 14px;
+}
+
+.footer__bottom {
+  @include container;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 22px;
+  border-top: 1px solid rgb(255 250 242 / 20%);
+  color: rgb(255 250 242 / 60%);
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .games__track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .game-card:nth-child(4) {
+    display: none;
+  }
+}
+
+@include tablet {
+  .hero,
+  .hero__container {
+    min-height: 500px;
+  }
+
+  .hero__card {
+    width: min(66%, 500px);
+  }
+
+  .games,
+  .leaderboard,
+  .developer {
+    padding-block: 60px;
+  }
+
+  .games__track {
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap: 14px;
+  }
+
+  .game-card:nth-child(4) {
+    display: block;
+  }
+
+  .game-card:nth-child(n + 4) {
+    display: none;
+  }
+
+  .leaderboard th:nth-child(6),
+  .leaderboard td:nth-child(6) {
+    display: none;
+  }
+
+  .leaderboard tbody tr:nth-child(n + 4) {
+    display: none;
+  }
+
+  .developer__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .developer__art {
+    min-height: 300px;
+  }
+
+  .footer__container {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .games,
+  .leaderboard,
+  .developer {
+    padding-block: 48px;
+  }
+
+  .hero,
+  .hero__container {
+    min-height: 580px;
+  }
+
+  .hero__container {
+    align-items: end;
+    padding-bottom: 32px;
+  }
+
+  .hero__card {
+    width: 100%;
+    padding: 26px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .games__track {
+    display: flex;
+    gap: 12px;
+    overflow: visible;
+  }
+
+  .game-card {
+    flex: 0 0 76%;
+  }
+
+  .game-card:not(.game-card--featured) {
+    flex-basis: 48%;
+  }
+
+  .game-card__info {
+    display: none;
+  }
+
+  .game-card--featured .game-card__info {
+    display: grid;
+  }
+
+  .leaderboard__table-wrap {
+    overflow-x: auto;
+  }
+
+  .leaderboard table {
+    min-width: 620px;
+  }
+
+  .developer__art {
+    min-height: 240px;
+  }
+
+  .footer__links {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__bottom {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .section-container {
+    width: min(calc(100% - 24px), $container-max);
+  }
+
+  .section-heading {
+    align-items: center;
+  }
+
+  .section-arrows {
+    margin-bottom: 20px;
+  }
+
+  .section-arrows button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero__card {
+    box-shadow: 5px 5px 0 $color-border;
+  }
+
+  .leaderboard th,
+  .leaderboard td {
+    padding: 12px 10px;
+  }
+
+  .footer__links {
+    grid-template-columns: 1fr;
+  }
 }
