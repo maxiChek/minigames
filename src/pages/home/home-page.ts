@@ -1,3 +1,5 @@
+import { createLeaderboard } from '../../components/leaderboard/leaderboard';
+
 export function createHomePage(): HTMLElement {
   const main = document.createElement('main');
 
@@ -8,6 +10,8 @@ export function createHomePage(): HTMLElement {
       <p>Play classic games in your browser.</p>
     </section>
   `;
+
+  main.append(createLeaderboard());
 
   return main;
 }
