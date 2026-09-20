@@ -1,7 +1,7 @@
 @use './tokens' as *;
 
 @mixin container {
-  width: min(100% - 32px, 1200px);
+  width: min(calc(100% - 32px), $container-max);
   margin-inline: auto;
 }
 
@@ -14,5 +14,23 @@
 @mixin desktop {
   @media (min-width: $breakpoint-desktop) {
     @content;
+  }
+}
+
+@mixin section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 28px;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.1;
+
+  &::before {
+    width: 8px;
+    min-width: 8px;
+    height: 40px;
+    content: '';
+    background: $color-primary;
+    border-radius: 4px;
   }
 }
