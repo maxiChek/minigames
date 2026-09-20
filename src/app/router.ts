@@ -1,5 +1,10 @@
+import { createHeader } from '../components/header/header';
+import '../components/header/header.scss';
+import { createHomePage } from '../pages/home/home-page';
+import '../pages/home/home-page.scss';
+
 export function initRouter(): void {
-  document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-    <h1>MiniGames</h1>
-  `;
+  const app = document.querySelector<HTMLDivElement>('#app')!;
+
+  app.append(createHeader(), createHomePage());
 }
